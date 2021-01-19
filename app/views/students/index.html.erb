@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/alasql/0.5.5/alasql.min.js"></script>
+</head>
+<body>
+     <p id="notice"><%= notice %></p>
+     <%= link_to 'New Student', new_student_path, class: "btn btn-primary" %>
+
+     <h1>Students</h1>
+
+     <div id="myGrid" style="height: 600px;width:100%;" class="ag-theme-alpine mt-3"></div>
+
+     <br>
+</body>
+     <script type="text/javascript" charset="utf-8">
+
+          var columnDefs = [
+               { headerName: "ခုံအမှတ်",field: 'roll_no', editable: true, width: 300 },
+               { headerName: "အမည်",field: 'name', editable: true,width: 300 },
+               { headerName: "ကျား/မ",field: 'gender', editable: true,width: 300 },
+               { headerName: "မွေးနေ့",field: 'dob', editable: true,width: 300 },
+               { headerName: "အဖအမည်",field: 'father_name', editable: true,width: 300 },
+               { headerName: "အမိအမည်",field: 'mother_name', editable: true,width: 300 },
+               { headerName: "နဝမတန်းခုံအမှတ်",field: 'grade9_roll_no', editable: true,width: 300 },
+               { headerName: "ကျောင်း",field: 'school', editable: true,width: 300 },
+               { headerName: "ဘာသာတွဲ",field: 'subject', editable: true,width: 300 },
+               { headerName: "မူရင်း",field: 'source', editable: true,width: 300 },
+          ];
+          var rowData =  <%= @students_json.to_s.html_safe %>;
+
+          // let the grid know which columns and what data to use
+          var gridOptions = {
+               columnDefs: columnDefs,
+               rowData: rowData,
+               enableColResize: true, enableSorting: true, enableFilter: true,
+               defaultColDef: {
+               filter: true // set filtering on for all columns
+               },
+
+               // enable pagination
+               pagination: true,
+
+               // 10 rows per page (default is 100)
+               paginationPageSize: 10,
+
+               // fetch 10 rows per block as page size is 10 (default is 100)
+               cacheBlockSize: 10,
+
+               animateRows: true,
+          };
+          // lookup the container we want the Grid to use
+          var eGridDiv = document.querySelector('#myGrid');
+
+          // create the grid passing in the div to use together with the columns & data we want to use
+          new agGrid.Grid(eGridDiv, gridOptions);
+     </script>
+</html>

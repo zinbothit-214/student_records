@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>StudentRecord</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <script src="https://unpkg.com/@ag-grid-enterprise/all-modules@22.0.0/dist/ag-grid-enterprise.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ag-grid/23.2.1/styles/ag-grid.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ag-grid/23.2.1/styles/ag-theme-alpine.min.css" integrity="sha512-3cK9ONqTElqX4aGuY1wMeaD3Yj/LGpMZZnYW30ZayAGcBWDx4qcS1+55X8/qEcg2hoyggDbJPzvrw5vCvQ+L6A==" crossorigin="anonymous" />
+
+  </head>
+  <body>
+    <%= yield %>
+  </body>
+</html>

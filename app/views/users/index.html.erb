@@ -1,0 +1,63 @@
+<% if current_user.is_admin? %>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/">UserAuth</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+              <li class="nav-item active">
+                  <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+              </li>
+
+              <% if current_user.is_admin? %>
+              <li class="nav-item">
+                  <a class="nav-link" href="/users">Users</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/students">Students</a>
+              </li>
+              <%end %>
+              <% if current_user.present? %>
+              <li class="nav-item">
+                  <%= link_to 'Logout' , destroy_user_session_path ,method: :delete , class: "nav-link" %>
+              </li>
+              <% end %>
+          </ul>
+      </div>
+    </nav>
+
+<%= link_to 'New User', new_user_path, class: "btn btn-primary" %>
+
+<p id="notice"><%= notice %></p>
+
+<h1>Users</h1>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>User name</th>
+      <th>Is admin</th>
+      <th colspan="3">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.user_name %></td>
+        <td><%= user.is_admin %></td>
+        <td><%= link_to 'Show', user, class: "btn btn-secondary" %></td>
+        <td><%= link_to 'Edit', edit_user_path(user), class: "btn btn-warning" %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% else %>
+  <h1>Dashboard</h1>
+<% end %>
